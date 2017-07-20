@@ -62,7 +62,7 @@ MainPageController = (function () {
         hide: function () {
             $view.loader.hide();
         },
-    }
+    };
 
     function each(arr, func) {
         for (var i = 0 ; i < arr.length; i++) {
@@ -80,8 +80,32 @@ MainPageController = (function () {
         return result;
     }
 
+    function buildQueryString(params) {
+       var str = [];
+       for(var p in params){
+           if (params.hasOwnProperty(p)) {
+               str.push(encodeURIComponent(p) + '=' + encodeURIComponent(params[p]));
+           }
+       }
+       return '?' + str.join('&');
+    }
+
+    function redirectWithParams(params) {
+        var queryString = buildQueryString(params);
+        var fullPath = window.location.protocol + '//' + window.location.host + window.location.pathname;
+        window.location.replace(fullPath + queryString);
+    }
+
     function getSmallText(text) {
         return '<span class="smaller-text">' + text + '</span>';
+    }
+
+    function getAddrPromptText() {
+        return (
+            'This page has the simple purpose of giving quick info for NiceHash miner, ' +
+            'by given BTC address and currency (default is BGN).\n\n\ ' +
+            'You can paste your address below:'
+        );
     }
 
     var handlers = {
@@ -127,6 +151,15 @@ MainPageController = (function () {
 
         var urlParams = getJsonFromUrl();
         var currency = urlParams.currency || DEFAULT_CURR;
+
+        if (!urlParams.addr) {
+            var addr = prompt(getAddrPromptText());
+            if (addr && addr != 'null') {
+                redirectWithParams({ addr: addr });
+            }
+            loader.hide();
+            return;
+        }
 
         loader.show();
 
