@@ -1,2 +1,2 @@
 # NiceHashMinerCheck
-Simple nice
+Simple miner checker for personal usage
