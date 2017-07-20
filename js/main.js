@@ -115,21 +115,22 @@ MainPageController = (function () {
     };
 
     handlers.stats.provider.ex = function(response, currency, price) {
-              
+
         var data = response.result;
 
         if (data.error) {
             alert(data.error);
             return;
-        }  
+        }
 
         var current = data.current[0];
 
-        var acceptedSpeed = parseFloat(current.data[0].a);
+        var acceptedSpeed = parseFloat(current.data[0].a || 0);
         var rejectedSpeed = parseFloat(current.data[0].rs || 0);
 
         var totalSpeed = acceptedSpeed + rejectedSpeed;
         var efficiency = (acceptedSpeed / totalSpeed) * 100;
+        efficiency = isNaN(efficiency) ? 0 : efficiency;
 
         var balance = parseFloat(current.data[1]);
         var profitability = parseFloat(current.profitability * acceptedSpeed);
