@@ -1,4 +1,8 @@
 {
-  "require" : {},
-  "require-dev": {}
+  "require" : {
+    "php": ">=7.1.0"
+  },
+  "require-dev": {
+    "php": ">=7.1.0"
+  }
 }
