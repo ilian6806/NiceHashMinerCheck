@@ -201,7 +201,7 @@ MainPageController = (function () {
                 return;
             }
 
-            $view.btcPrice.html(parseFloat(btcPrice).toFixed(2));
+            $view.btcPrice.html(parseFloat(btcPrice).toFixed(2) + ' ' + getSmallText(currency));
 
             loader.show();
 

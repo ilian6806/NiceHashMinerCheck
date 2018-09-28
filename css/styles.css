@@ -16,6 +16,13 @@ body {
     background-size: 100px 100px;
 }
 
+div, span, table, img {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
 .main-container {
     width: 100%;
     max-width: 480px;
@@ -80,11 +87,16 @@ body {
     z-index: 100000;
 }
 
-.btc-price-container {
+.btc-price-wrapper {
     position: fixed;
-    top: 145px;
-    right: 22px;
-    padding: 5px;
+    bottom: 45px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.btc-price-container {
+    padding: 7px;
     border-radius: 4px;
     background: black;
 }

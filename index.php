@@ -54,7 +54,9 @@
             </tr>
         </table>
 
-        <div id="btc-price" class="btc-price-container"></div>
+        <div class="btc-price-wrapper">
+            <span id="btc-price" class="btc-price-container"></span>
+        </div>
 
         <div id="nh-redirect-btn" class="redirect-btn bottom-btn">NH</div>
         <img src="img/refresh.png" id="nh-refresh-btn" class="refresh-btn bottom-btn" />
