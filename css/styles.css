@@ -39,17 +39,34 @@ body {
     box-shadow: inset 0px 0px 4px 1px rgba(0,0,0,0.4);
 }
 
-.refresh-btn {
+.bottom-btn {
     position: fixed;
+    cursor: pointer;
+    transition: transform .02s;
+}
+.bottom-btn:active {
+    transform: scale(0.96);
+}
+
+.redirect-btn,
+.refresh-btn {
     bottom: 20px;
     right: 20px;
     width: 70px;
     height: 70px;
-    cursor: pointer;
-    transition: transform .02s;
 }
-.refresh-btn:active {
-    transform: scale(0.96);
+
+.redirect-btn {
+    bottom: 25px;
+    left: 23px;
+    width: 58px;
+    height: 58px;
+    line-height: 58px;
+    border-radius: 50%;
+    text-align: center;
+    font-weight: bold;
+    background: black;
+    color: #2F2F2F;
 }
 
 .loader {
@@ -61,6 +78,15 @@ body {
     margin-top: -50px;
     margin-left: -50px;
     z-index: 100000;
+}
+
+.btc-price-container {
+    position: fixed;
+    top: 145px;
+    right: 22px;
+    padding: 5px;
+    border-radius: 4px;
+    background: black;
 }
 
 .smaller-text {

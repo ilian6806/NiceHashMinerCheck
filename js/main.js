@@ -35,6 +35,8 @@ MainPageController = (function () {
         'Blake2s': 28
     };
 
+    var NICEHASH_URL = 'https://www.nicehash.com/miner/';
+
     var DEFAULT_ALGO = NH_ALGORITMS['Equihash'];
     var DEFAULT_CURR = 'BGN';
 
@@ -46,11 +48,16 @@ MainPageController = (function () {
             unpaidCurr: $('#nh-unpaid-curr'),
             unpaidCurrLabel: $('#nh-unpaid-curr-label'),
             profitability: $('#nh-prof'),
-            profitabilityCurr: $('#nh-prof-curr'),
-            profitabilityCurrLabel: $('#nh-prof-curr-label'),
+            profitabilityDay: $('#nh-prof-day'),
+            profitabilityDayLabel: $('#nh-prof-day-label'),
+            profitabilityMonth: $('#nh-prof-month'),
+            profitabilityMonthLabel: $('#nh-prof-month-label'),
             efficiency: $('#nh-effic'),
             speed: $('#nh-speed'),
+            algo: $('#nh-algo'),
+            btcPrice: $('#btc-price'),
             refreshBtn: $('#nh-refresh-btn'),
+            redirectBtn: $('#nh-redirect-btn'),
             loader: $('#nh-loader')
         };
     }
@@ -123,7 +130,17 @@ MainPageController = (function () {
             return;
         }
 
-        var current = data.current[0];
+        var current = {};
+
+        for (var i = 0, len = data.current.length; i < len; i++) {
+            if (data.current[i].data 
+             && data.current[i].data[0] 
+             && data.current[i].data[0].a
+            ) {
+                current = data.current[i];
+                break;
+            }
+        }
 
         var acceptedSpeed = parseFloat(current.data[0].a || 0);
         var rejectedSpeed = parseFloat(current.data[0].rs || 0);
@@ -140,12 +157,13 @@ MainPageController = (function () {
         $view.unpaidCurrLabel.html($view.unpaidCurrLabel.html().replace('_', currency));
 
         $view.profitability.html(profitability.toFixed(4) + getSmallText(' BTC/day'));
-        $view.profitabilityCurr.html((profitability * price).toFixed(2) + ' ' + getSmallText(currency + '/day'));
-        $view.profitabilityCurrLabel.html($view.profitabilityCurrLabel.html().replace('_', currency));
+        $view.profitabilityDay.html((profitability * price).toFixed(2) + ' ' + getSmallText(currency + '/day'));
+        $view.profitabilityMonth.html(((profitability * price) * 27).toFixed(2) + ' ' + getSmallText(currency + '/mth'));
 
         $view.efficiency.html(efficiency + getSmallText('%'));
 
         $view.speed.html(acceptedSpeed.toFixed(2) + getSmallText(' Sol/s'));
+        $view.algo.html(current.name);
     }
 
     function update() {
@@ -183,6 +201,8 @@ MainPageController = (function () {
                 return;
             }
 
+            $view.btcPrice.html(parseFloat(btcPrice).toFixed(2));
+
             loader.show();
 
             NiceHashApi.call('stats.provider.ex', { 
@@ -194,8 +214,16 @@ MainPageController = (function () {
         });
     }
 
+    function goToNiceHash() {
+        loader.show();
+        setTimeout(function () {
+            window.location = NICEHASH_URL +  getJsonFromUrl()['addr'];
+        }, 50);
+    }
+
     function bindEvents() {
         $view.refreshBtn.off('click').on('click', update);
+        $view.redirectBtn.off('click').on('click', goToNiceHash);
     }
 
     function load() {

@@ -19,11 +19,10 @@
                 <td id="nh-unpaid" class="ta-right inline width-60 m-left-5 inner-box">-</td>
             </tr>
             <tr>
-                <td id="nh-unpaid-curr-label" class="ta-left inline width-30">Unpaid (_):</td>
+                <td id="nh-unpaid-curr-label" class="ta-left inline width-30"></td>
                 <td id="nh-unpaid-curr" class="ta-right inline width-60 m-left-5 inner-box">-</td>
             </tr>
             <tr>
-                <td>&nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
             <tr>
@@ -31,8 +30,15 @@
                 <td id="nh-prof" class="ta-right inline width-60 m-left-5 inner-box">-</td>
             </tr>
             <tr>
-                <td id="nh-prof-curr-label" class="ta-left inline width-30">Profitability (_):</td>
-                <td id="nh-prof-curr" class="ta-right inline width-60 m-left-5 inner-box">-</td>
+                <td id="nh-prof-day-label" class="ta-left inline width-30"></td>
+                <td id="nh-prof-day" class="ta-right inline width-60 m-left-5 inner-box">-</td>
+            </tr>
+            <tr>
+                <td id="nh-prof-month-label" class="ta-left inline width-30"></td>
+                <td id="nh-prof-month" class="ta-right inline width-60 m-left-5 inner-box">-</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
             </tr>
             <tr>
                 <td class="ta-left inline width-30">Efficiency:</td>
@@ -42,9 +48,17 @@
                 <td class="ta-left inline width-30">Speed:</td>
                 <td id="nh-speed" class="ta-right inline width-60 m-left-5 inner-box">-</td> 
             </tr>
+            <tr>
+                <td class="ta-left inline width-30">Algorithm:</td>
+                <td id="nh-algo" class="ta-right inline width-60 m-left-5 inner-box">-</td> 
+            </tr>
         </table>
 
-        <img src="img/refresh.png" id="nh-refresh-btn" class="refresh-btn" />
+        <div id="btc-price" class="btc-price-container"></div>
+
+        <div id="nh-redirect-btn" class="redirect-btn bottom-btn">NH</div>
+        <img src="img/refresh.png" id="nh-refresh-btn" class="refresh-btn bottom-btn" />
+
         <img src="img/loading.gif" id="nh-loader" class="loader" />
     </div>
 
