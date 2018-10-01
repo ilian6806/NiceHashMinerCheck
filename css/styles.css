@@ -17,10 +17,12 @@ body {
 }
 
 div, span, table, img {
-    user-select: none;
+    -webkit-touch-callout: none;
     -webkit-user-select: none;
+    -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
+    user-select: none;
 }
 
 .main-container {
@@ -57,14 +59,14 @@ div, span, table, img {
 
 .redirect-btn,
 .refresh-btn {
-    bottom: 20px;
+    bottom: 10px;
     right: 20px;
     width: 70px;
     height: 70px;
 }
 
 .redirect-btn {
-    bottom: 25px;
+    bottom: 15px;
     left: 23px;
     width: 58px;
     height: 58px;
@@ -89,7 +91,7 @@ div, span, table, img {
 
 .btc-price-wrapper {
     position: fixed;
-    bottom: 45px;
+    bottom: 35px;
     left: 0;
     width: 100%;
     text-align: center;
